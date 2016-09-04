@@ -33,8 +33,10 @@ public class StreamProcessorImpl implements StreamProcessor {
         line = reader.readLine();
       }
     } catch (IOException e) {
-      log.severe("Error occurred while processing the input stream: " + e.getLocalizedMessage());
+      String message = "Error occurred while processing the InputStream: " + e.getLocalizedMessage();
+      log.severe(message);
       e.printStackTrace();
+      throw new RuntimeException(message, e);
     }
     return ret;
   }
@@ -52,8 +54,10 @@ public class StreamProcessorImpl implements StreamProcessor {
         writer.write(line);
       }
     } catch (IOException e) {
-      log.severe("Error occurred while processing the output stream: " + e.getLocalizedMessage());
+      String message = "Error occurred while processing the OutputStream: " + e.getLocalizedMessage();
+      log.severe(message);
       e.printStackTrace();
+      throw new RuntimeException(message, e);
     }
   }
 

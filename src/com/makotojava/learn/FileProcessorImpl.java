@@ -32,8 +32,10 @@ public class FileProcessorImpl implements FileProcessor {
         line = reader.readLine();
       }
     } catch (IOException e) {
-      log.severe("Error occurred while processing the file: " + e.getLocalizedMessage());
+      String message = "Error occurred while processing the file: " + e.getLocalizedMessage();
+      log.severe(message);
       e.printStackTrace();
+      throw new RuntimeException(message, e);
     }
     return ret;
   }
@@ -51,8 +53,10 @@ public class FileProcessorImpl implements FileProcessor {
         writer.write(line);
       }
     } catch (IOException e) {
-      log.severe("Error occurred while processing the file: " + e.getLocalizedMessage());
+      String message = "Error occurred while processing the file: " + e.getLocalizedMessage();
+      log.severe(message);
       e.printStackTrace();
+      throw new RuntimeException(message, e);
     }
   }
 

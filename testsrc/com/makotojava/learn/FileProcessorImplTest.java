@@ -24,8 +24,10 @@ public class FileProcessorImplTest {
     // Under Run Configuration > Arguments tab
     // Make sure to set working directory to ${workspace_loc:IO101/files}
     String filename = "lorem.txt";
+    String filesDir = "files";
+    String inputPath = filesDir + File.separator + filename;
 
-    File inputFile = new File(filename);
+    File inputFile = new File(inputPath);
 
     List<String> lines = classUnderTest.readIntoLines(inputFile);
     assertNotNull(lines);
@@ -46,8 +48,10 @@ public class FileProcessorImplTest {
     // Under Run Configuration > Arguments tab
     // Make sure to set working directory to ${workspace_loc:IO101/files}
     String filename = "lines_File.txt";
+    String filesDir = "files";
+    String outputPath = filesDir + File.separator + filename;
 
-    File outputFile = new File(filename);
+    File outputFile = new File(outputPath);
     if (outputFile.exists()) {
       outputFile.delete();
     }
@@ -58,8 +62,12 @@ public class FileProcessorImplTest {
   public void testCopy() {
     String inputFilename = "lorem.txt";
     String outputFilename = "lorem_copyFile.txt";
-    File inputFile = new File(inputFilename);
-    File outputFile = new File(outputFilename);
+    String filesDir = "files";
+    String inputPath = filesDir + File.separator + inputFilename;
+    String outputPath = filesDir + File.separator + outputFilename;
+
+    File inputFile = new File(inputPath);
+    File outputFile = new File(outputPath);
     classUnderTest.copy(inputFile, outputFile);
     // Now verify the file was correctly copied
     List<String> linesOrig = classUnderTest.readIntoLines(inputFile);
